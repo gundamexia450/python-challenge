@@ -10,8 +10,6 @@ with open(csvpath) as csvfile:
     
     csv_reader = csv.reader(csvfile, delimiter = ",")
 
-    print(csv_reader)
-
     csv_header = next(csv_reader)
 
     total_month = 0
