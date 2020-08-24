@@ -26,18 +26,16 @@ with open(csvpath) as csvfile:
 
     aver_change = round(total_revenue / total_month, 2)
 
-    great_increase = revenue[0]
-    great_decrease = revenue[0]
-    for great_row in revenue:
-        if revenue[int(great_row)] > revenue[int(great_row) + 1]:
-            great_increase = revenue[great_row]
-        else:
-            great_increase = revenue[great_row +1]
+    great_inc = max(revenue)
+    great_dec = min(revenue)
+
 
     print("Financial Analysis")
     print("-----------------------------------------")
     print("Total Months: " + str(total_month))
     print("Total Revenue: $" + str(total_revenue))
-    print("Average Change: $" + str(aver_change)) 
+    print("Average Change: $" + str(aver_change))
+    print("Greatest Increase in Profits: " + str(great_inc))
+    print("Greatest Decrease in Profits: "  + str(great_dec))
 
         
