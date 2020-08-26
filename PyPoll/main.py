@@ -8,6 +8,9 @@ votepercent = []
 
 csvpath = os.path.join(".", "Resources", "election_data.csv")
 
+def print_percent(elect_data):
+    
+
 with open(csvpath) as csvfile:
     
     csv_reader = csv.reader(csvfile, delimiter = ",")
