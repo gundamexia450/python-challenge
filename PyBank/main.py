@@ -33,17 +33,34 @@ with open(csvpath) as csvfile:
     
     aver_change = round(total_profit/total_month, 2)
 
+    
     great_inc = max(profit_loss)
+    inc_index = profit_loss.index(great_inc)
+    month_inc = date[inc_index +1]
 
     great_dec = min(profit_loss)
+    dec_index = profit_loss.index(great_dec)
+    month_dec = date[dec_index + 1]
 
 
-    print("Financial Analysis")
+    print("Financial Analysis")s
     print("-----------------------------------------")
     print("Total Months: " + str(total_month))
     print("Total Revenue: $" + str(total_revenue))
     print("Total Profit: $" + str(total_profit))
     print("Average Change: $" + str(aver_change))
-    print("Greatest Increase in Profits: " + str(great_inc))
-    print("Greatest Decrease in Profits: " + str(great_dec))
+    print("Greatest Increase in Profits: " + str(month_inc) + " " + str(great_inc))
+    print("Greatest Decrease in Profits: " + str(month_dec) + " " + str(great_dec))
+
+output_result = os.path.join(".", "analysis", "result.txt")
+
+with open(output_result, "w") as txt_file:
+    txt_file.write("Financial Analysis" + "\n") 
+    txt_file.write("-----------------------------------------\n")
+    txt_file.write("Total Months: " + str(total_month) + "\n")
+    txt_file.write("Total Revenue: $" + str(total_revenue) + "\n")
+    txt_file.write("Total Profit: $" + str(total_profit) + "\n")
+    txt_file.write("Average Change: $" + str(aver_change) + "\n")
+    txt_file.write("Greatest Increase in Profits: " + str(month_inc) + " " + str(great_inc) + "\n")
+    txt_file.write("Greatest Decrease in Profits: " + str(month_dec) + " " + str(great_dec) + "\n")
         
