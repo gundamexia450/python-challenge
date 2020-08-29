@@ -1,53 +1,55 @@
 import os
 import csv
 
-vote_count = []
-county = []
-candppl = []
-cand_list = ["Khan", "Correy", "O'Tooley", "Li"]
-khan_vote = 0
-correy_vote = 0
-tooley_vote = 0
-li_vote = 0
 
-csvpath = os.path.join(".", "Resources", "election_data.csv")
-    
+cand_list = {}
+break_line = "------------------------------"
+
+csvpath = os.path.join(".", "Resources", "election_data.csv")  
+
 
 with open(csvpath) as csvfile:
-    
     csv_reader = csv.reader(csvfile, delimiter = ",")
-
     csv_header = next(csv_reader)
-
+    total_vote = 0
     for row in csv_reader:
-        vote_count.append(row[0])
-        county.append(row[1])
-        candppl.append(row[2])
-
-    total_vote = len(vote_count)
-    
-    
-    for name in candppl:
-        if name == cand_list.index("Khan"):
-            khan_vote += 1
-        elif name == cand_list.index("Correy"):
-            correy_vote += 1
-        elif name == cand_list.index("O'Tooley"):
-            tooley_vote += 1
-        elif name == cand_list.index("Li"):
-            li_vote += 1
+        total_vote += 1
+        name = row[2]
+        if name in cand_list:
+            cand_list[name] += 1
         else:
-            cand_list.append(name)
-
-print(str(khan_vote) + str(correy_vote) + str(tooley_vote) + str(li_vote))
+            cand_list[name] = 1
     
+cand_list["Khan Percent"] = round((cand_list["Khan"]/total_vote) * 100, 2)
+cand_list["Correy Percent"] = round((cand_list["Correy"]/total_vote) * 100, 2)
+cand_list["Li Percent"] = round((cand_list["Li"]/total_vote) * 100, 2)
+cand_list["O'Tooley Percent"] = round((cand_list["O'Tooley"]/total_vote) * 100, 2)
 
+cand_winner = max(cand_list, key=cand_list.get)
 
 print("Election Results")
-print("----------------------------------")
-print("Total Votes: " + str(total_vote))
-print("----------------------------------")
-print("----------------------------------")
-print("----------------------------------")
+print(break_line)
+print("Total Vote: " + str(total_vote))
+print(break_line)
+print("Khan: " + str(cand_list["Khan Percent"]) + "% " + str(cand_list["Khan"])) 
+print("Correy: " + str(cand_list["Correy Percent"]) + "% " + str(cand_list["Correy"]))
+print("Li: " + str(cand_list["Li Percent"]) + "% " + str(cand_list["Li"]))
+print("O'Tooley: " + str(cand_list["O'Tooley Percent"]) + "% " + str(cand_list["O'Tooley"]))
+print(break_line)
+print("Winner: " + str(cand_winner))
+print(break_line)
 
+output_result = os.path.join(".", "analysis", "result.txt")
 
+with open(output_result, "w") as txt_file:
+    txt_file.write("Election Results" + "\n")
+    txt_file.write(break_line + "\n")
+    txt_file.write("Total Vote: " + str(total_vote) + "\n")
+    txt_file.write(break_line + "\n")
+    txt_file.write("Khan: " + str(cand_list["Khan Percent"]) + "% " + str(cand_list["Khan"]) + "\n") 
+    txt_file.write("Correy: " + str(cand_list["Correy Percent"]) + "% " + str(cand_list["Correy"]) + "\n")
+    txt_file.write("Li: " + str(cand_list["Li Percent"]) + "% " + str(cand_list["Li"]) + "\n")
+    txt_file.write("O'Tooley: " + str(cand_list["O'Tooley Percent"]) + "% " + str(cand_list["O'Tooley"]) + "\n")
+    txt_file.write(break_line + "\n")
+    txt_file.write("Winner: " + str(cand_winner) + "\n")
+    txt_file.write(break_line + "\n")

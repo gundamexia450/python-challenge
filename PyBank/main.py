@@ -5,6 +5,7 @@ date = []
 revenue = []
 profit_loss = []
 last_profit = 0
+break_line = "------------------------------"
 
 csvpath = os.path.join(".", "Resources", "budget_data.csv")
 
@@ -44,7 +45,7 @@ with open(csvpath) as csvfile:
 
 
     print("Financial Analysis")
-    print("-----------------------------------------")
+    print(break_line)
     print("Total Months: " + str(total_month))
     print("Total Revenue: $" + str(total_revenue))
     print("Total Profit: $" + str(total_profit))
@@ -56,7 +57,7 @@ output_result = os.path.join(".", "analysis", "result.txt")
 
 with open(output_result, "w") as txt_file:
     txt_file.write("Financial Analysis" + "\n") 
-    txt_file.write("-----------------------------------------\n")
+    txt_file.write(break_line + "\n")
     txt_file.write("Total Months: " + str(total_month) + "\n")
     txt_file.write("Total Revenue: $" + str(total_revenue) + "\n")
     txt_file.write("Total Profit: $" + str(total_profit) + "\n")
