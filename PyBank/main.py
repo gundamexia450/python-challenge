@@ -36,14 +36,14 @@ with open(csvpath) as csvfile:
     
     great_inc = max(profit_loss)
     inc_index = profit_loss.index(great_inc)
-    month_inc = date[inc_index +1]
+    month_inc = date[inc_index]
 
     great_dec = min(profit_loss)
     dec_index = profit_loss.index(great_dec)
-    month_dec = date[dec_index + 1]
+    month_dec = date[dec_index]
 
 
-    print("Financial Analysis")s
+    print("Financial Analysis")
     print("-----------------------------------------")
     print("Total Months: " + str(total_month))
     print("Total Revenue: $" + str(total_revenue))
